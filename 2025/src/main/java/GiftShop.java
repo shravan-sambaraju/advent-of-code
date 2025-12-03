@@ -5,7 +5,9 @@ import java.util.List;
 import java.util.Scanner;
 
 /**
- * You get inside and take the elevator to its only other stop: the gift shop. "Thank you for
+ * Day 2
+ *
+ * <p>You get inside and take the elevator to its only other stop: the gift shop. "Thank you for
  * visiting the North Pole!" gleefully exclaims a nearby sign. You aren't sure who is even allowed
  * to visit the North Pole, but you know you can access the lobby through here, and from there you
  * can access the rest of the North Pole base.
@@ -46,9 +48,8 @@ import java.util.Scanner;
  *
  * <p>What do you get if you add up all of the invalid IDs?
  *
- * <p>--- Part Two --- The clerk quickly
- * discovers that there are still invalid IDs in the ranges in your list. Maybe the young Elf was
- * doing other silly patterns as well?
+ * <p>--- Part Two --- The clerk quickly discovers that there are still invalid IDs in the ranges in
+ * your list. Maybe the young Elf was doing other silly patterns as well?
  *
  * <p>Now, an ID is invalid if it is made only of some sequence of digits repeated at least twice.
  * So, 12341234 (1234 two times), 123123123 (123 three times), 1212121212 (12 five times), and
@@ -92,47 +93,47 @@ public class GiftShop {
   }
 
   private static long invalidRangeSum2(List<Long[]> ranges) {
-      if(ranges == null || ranges.isEmpty()){
+    if (ranges == null || ranges.isEmpty()) {
 
-          return 0;
+      return 0;
+    }
+    long invalidRangesSum = 0;
+    for (Long[] range : ranges) {
+      Long start = range[0];
+      Long end = range[1];
+      for (long i = start; i <= end; i++) {
+        if (isValid(i)) {
+          invalidRangesSum += i;
+        }
       }
-      long invalidRangesSum = 0;
-      for(Long[] range : ranges){
-          Long start = range[0];
-          Long end = range[1];
-          for(long i = start; i <= end; i++){
-              if(isValid(i)){
-                  invalidRangesSum += i;
-              }
-          }
-      }
-      return invalidRangesSum;
+    }
+    return invalidRangesSum;
   }
 
-    private static boolean isValid(long i) {
-        String num = String.valueOf(i);
-        int len = num.length();
-        for(int pattern=1; pattern<=len/2; pattern++){
-            if(len%pattern != 0){
-                continue;
-            }
-            int repeats = len/pattern;
-            if(repeats != 2 && repeats != 3 && repeats != 5 && repeats != 7){
-                continue;
-            }
-            String subPatttern = num.substring(0, pattern);
-            StringBuilder sb = new StringBuilder();
-            for(int i1 = 0; i1 < repeats; i1++){
-                sb.append(subPatttern);
-            }
-            if(num.equals(sb.toString())){
-                return true;
-            }
-        }
-        return false;
+  private static boolean isValid(long i) {
+    String num = String.valueOf(i);
+    int len = num.length();
+    for (int pattern = 1; pattern <= len / 2; pattern++) {
+      if (len % pattern != 0) {
+        continue;
+      }
+      int repeats = len / pattern;
+      if (repeats != 2 && repeats != 3 && repeats != 5 && repeats != 7) {
+        continue;
+      }
+      String subPatttern = num.substring(0, pattern);
+      StringBuilder sb = new StringBuilder();
+      for (int i1 = 0; i1 < repeats; i1++) {
+        sb.append(subPatttern);
+      }
+      if (num.equals(sb.toString())) {
+        return true;
+      }
     }
+    return false;
+  }
 
-    public static void main(String[] args) {
+  public static void main(String[] args) {
     List<Long[]> list1 = new ArrayList<>();
     ClassLoader loader = Thread.currentThread().getContextClassLoader();
     InputStream is = loader.getResourceAsStream("invalidranges.txt");

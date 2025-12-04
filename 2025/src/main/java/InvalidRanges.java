@@ -65,7 +65,7 @@ import java.util.Scanner;
  * one invalid ID, 824824824. 2121212118-2121212124 now has one invalid ID, 2121212121. Adding up
  * all the invalid IDs in this example produces 4174379265.
  */
-public class GiftShop {
+public class InvalidRanges {
 
   private static long invalidRangeSum(List<Long[]> ranges) {
     if (ranges == null || ranges.isEmpty()) {
@@ -149,7 +149,6 @@ public class GiftShop {
         list1.add(rangeArray);
       }
     }
-    System.out.println(Arrays.deepToString(list1.toArray()));
     long rangeSum = invalidRangeSum(list1);
     long rangeSum2 = invalidRangeSum2(list1);
     System.out.println(rangeSum);

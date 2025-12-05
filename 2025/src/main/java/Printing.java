@@ -120,20 +120,19 @@ public class Printing {
         for (int col = 0; col < cols; col++) {
           if (rolls[row][col] == '@') {
             if (countValid(rolls, row, col, rows, cols)) {
-              toBeRemoved.add(new int[]{row, col});
+              toBeRemoved.add(new int[] {row, col});
             }
           }
         }
       }
-      if(!toBeRemoved.isEmpty()){
-          totalAccesible += toBeRemoved.size();
-          proceedIteration = true;
-          for(int[] roll : toBeRemoved){
-              rolls[roll[0]][roll[1]] = '.';
-          }
-          toBeRemoved.clear();
+      if (!toBeRemoved.isEmpty()) {
+        totalAccesible += toBeRemoved.size();
+        proceedIteration = true;
+        for (int[] roll : toBeRemoved) {
+          rolls[roll[0]][roll[1]] = '.';
+        }
+        toBeRemoved.clear();
       }
-
 
     } while (proceedIteration);
 
@@ -154,17 +153,17 @@ public class Printing {
   }
 
   public static void main(String[] args) {
-    List<String> list1 = new ArrayList<>();
+    List<String> rollsList = new ArrayList<>();
     ClassLoader loader = Thread.currentThread().getContextClassLoader();
     InputStream is = loader.getResourceAsStream("printing.txt");
     Scanner scanner = new Scanner(is);
     while (scanner.hasNextLine()) {
       String line = scanner.nextLine();
-      list1.add(line);
+      rollsList.add(line);
     }
-    char[][] paperRolls = new char[list1.size()][];
-    for (int i = 0; i < list1.size(); i++) {
-      paperRolls[i] = list1.get(i).toCharArray();
+    char[][] paperRolls = new char[rollsList.size()][];
+    for (int i = 0; i < rollsList.size(); i++) {
+      paperRolls[i] = rollsList.get(i).toCharArray();
     }
     long rolls = forkLiftRolls(paperRolls);
     System.out.println(rolls);

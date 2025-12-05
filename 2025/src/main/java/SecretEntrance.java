@@ -161,7 +161,7 @@ public class SecretEntrance {
   }
 
   public static void main(String[] args) throws FileNotFoundException {
-    List<Integer> list1 = new ArrayList<>();
+    List<Integer> documents = new ArrayList<>();
     ClassLoader loader = Thread.currentThread().getContextClassLoader();
     InputStream is = loader.getResourceAsStream("secretentrance.txt");
     Scanner scanner = new Scanner(is);
@@ -172,11 +172,11 @@ public class SecretEntrance {
       if (direction == 'L') {
         rotations = -rotations;
       }
-      list1.add(rotations);
+      documents.add(rotations);
     }
 
-    int password = buildPassword(list1);
-    int password2 = buildPassword2(list1);
+    int password = buildPassword(documents);
+    int password2 = buildPassword2(documents);
     System.out.println(password);
     System.out.println(password2);
   }

@@ -134,7 +134,7 @@ public class InvalidRanges {
   }
 
   public static void main(String[] args) {
-    List<Long[]> list1 = new ArrayList<>();
+    List<Long[]> rangesList = new ArrayList<>();
     ClassLoader loader = Thread.currentThread().getContextClassLoader();
     InputStream is = loader.getResourceAsStream("invalidranges.txt");
     Scanner scanner = new Scanner(is);
@@ -146,11 +146,11 @@ public class InvalidRanges {
         String[] startEnd = range.split("-");
         rangeArray[0] = Long.parseLong(startEnd[0]);
         rangeArray[1] = Long.parseLong(startEnd[1]);
-        list1.add(rangeArray);
+        rangesList.add(rangeArray);
       }
     }
-    long rangeSum = invalidRangeSum(list1);
-    long rangeSum2 = invalidRangeSum2(list1);
+    long rangeSum = invalidRangeSum(rangesList);
+    long rangeSum2 = invalidRangeSum2(rangesList);
     System.out.println(rangeSum);
     System.out.println(rangeSum2);
   }

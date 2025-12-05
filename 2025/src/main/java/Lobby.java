@@ -114,42 +114,42 @@ public class Lobby {
       digitsNeeded = 12;
       len = battery.length();
       int searchStart = 0;
-      for(int k=0; k<digitsNeeded; k++){
-          int remainingDigits = digitsNeeded - 1 -k;
-          int searchEnd = len-1-remainingDigits;
-          char maxDigit = '0';
-          int index = -1;
-          for(i=searchStart; i<=searchEnd; i++){
-              char current = battery.charAt(i);
+      for (int k = 0; k < digitsNeeded; k++) {
+        int remainingDigits = digitsNeeded - 1 - k;
+        int searchEnd = len - 1 - remainingDigits;
+        char maxDigit = '0';
+        int index = -1;
+        for (i = searchStart; i <= searchEnd; i++) {
+          char current = battery.charAt(i);
 
-              if(current > maxDigit){
-                  maxDigit = current;
-                  index = i;
-                  if(maxDigit == '9'){
-                      break;
-                  }
-              }
+          if (current > maxDigit) {
+            maxDigit = current;
+            index = i;
+            if (maxDigit == '9') {
+              break;
+            }
           }
-          sb.append(maxDigit);
-          searchStart = index+1;
+        }
+        sb.append(maxDigit);
+        searchStart = index + 1;
       }
-        maxJoltage += Long.parseLong(sb.toString());
+      maxJoltage += Long.parseLong(sb.toString());
     }
 
     return maxJoltage;
   }
 
   public static void main(String[] args) {
-    List<String> list1 = new ArrayList<>();
+    List<String> batteries = new ArrayList<>();
     ClassLoader loader = Thread.currentThread().getContextClassLoader();
     InputStream is = loader.getResourceAsStream("lobby.txt");
     Scanner scanner = new Scanner(is);
     while (scanner.hasNextLine()) {
       String line = scanner.nextLine();
-      list1.add(line);
+      batteries.add(line);
     }
-    long maxJoltage = calculateMaxJoltage(list1);
-    long maxJoltage2 = calculateMaxJoltage2(list1);
+    long maxJoltage = calculateMaxJoltage(batteries);
+    long maxJoltage2 = calculateMaxJoltage2(batteries);
     System.out.println(maxJoltage);
     System.out.println(maxJoltage2);
   }
